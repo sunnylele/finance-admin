@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>登录</title>
+	<link rel="stylesheet" href="assets/css-plugins/bootstrap.min.css" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="assets/css/login.css" />
+	<script src="assets/js-plugins/jquery-2.0.3.min.js"></script>
+	<script src="assets/js-plugins/bootstrap.min.js"></script>
+	<script src="assets/js-plugins/gVerify.js"></script>
+	<script src="assets/js-plugins/jquery.validate.js"></script>
+	<script src="assets/js-plugins/jquery.form.js"></script>
+	<script src="assets/js-plugins/jquery.cookie.js"></script>
+	<link rel="stylesheet" href="assets/js-plugins/skin/default/layer.css" />
+	<script src="assets/js-plugins/layer.js"></script>
+	<script src="assets/js/main.js"></script>
+</head>
+<body>
+	<div class="login-box">
+		<div class="login-list">
+			<div class="login-head">五路后台管理系统</div>
+			<form class="login-con" id="login-user">
+				<div class="form-group">
+				    <label for="userName">用户名</label>
+				    <input type="text" class="form-control" id="userName" name="userName" placeholder="用户名">
+				    <i class="fa fa-user"></i>
+				</div>
+				<div class="form-group">
+				    <label for="pass">密码</label>
+				    <input type="password" class="form-control" id="password" name="password" placeholder="密码">
+				    <i class="fa fa-lock"></i>
+				</div>
+				<div class="form-group verification clearfix">
+					<div class="l fl">
+						<label for="code">验证码</label>
+				    	<input type="text" class="form-control" id="code_input" name="code" placeholder="验证码">
+				    </div>
+				    <div class="r fr">
+				    	<div id="v_container" style="width:140px;height: 50px; float: right;"></div>
+				    </div>
+				</div>
+				<button type="submit" class="btn btn-lg btn-warning btn-block" id="login-btn">登录</button>
+			</form>
+		</div>
+	</div>
+</body>
+<script>
+	$(function(){
+		$(".login-box").css("height",$(window).height());
+    	$(".login-box").css("width",$(window).width());
+
+    	var url = null;
+    	var	url	= IPAdress+'/admin/manager/login';
+
+    	var verifyCode = new GVerify("v_container");
+
+		$('#login-btn').click(function(){
+			$('#login-user').validate({
+				submitHandler : function (form) {
+					$(form).ajaxSubmit({
+						type:'POST',
+						url:url,
+						dataType:'json',
+						success:function(responseText,statusText){
+
+							var manager = responseText.manager;
+							var str = JSON.stringify(manager);
+							sessionStorage.manager = str;
+							str = sessionStorage.manager;
+							obj = JSON.parse(str)
+							// console.log(obj)
+
+							if(responseText){
+								if(verifyCode.validate($("#code_input").val())){
+									if(responseText.flag == 3){
+										window.location.href='index.html';
+									}else{
+										layer.msg('帐号或密码不正确！');
+									}
+								}else{
+									layer.msg("验证码输入错误",{
+            							time: 2000
+            						});
+								}
+							}
+						},
+						error:function(data){
+						    alert(data.status);
+						}
+					});
+				},
+				rules : {
+					userName : {
+						required : true,
+					},
+					password : {
+						required : true,
+					},
+					code : {
+						required : true,
+					}
+				},
+				messages : {
+					userName : {
+						required : '请输入用户名！',
+					},
+					password : {
+						required : '请输入密码！',
+						remote : '帐号或密码不正确！'
+					},
+					code : {
+						required : '请输入验证码！',
+					}
+				}
+			});
+		})
+	})
+</script>
+</html>

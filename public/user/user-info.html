@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title>会员管理-会员信息</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<!-- basic styles -->
+
+		<link href="../../assets/css-plugins/bootstrap.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../../assets/css-plugins/font-awesome.min.css" />
+		<link rel="stylesheet" href="../../assets/css/common.css" />
+
+		<!--[if IE 7]>
+		  <link rel="stylesheet" href="assets/css/font-awesome-ie7.min.css" />
+		<![endif]-->
+
+		<!-- page specific plugin styles -->
+
+		<link rel="stylesheet" href="../../assets/css-plugins/jquery-ui-1.10.3.custom.min.css" />
+		<link rel="stylesheet" href="../../assets/css-plugins/jquery.gritter.css" />
+
+		<!-- ace styles -->
+
+		<link rel="stylesheet" href="../../assets/css/ace.min.css" />
+		<link rel="stylesheet" href="../../assets/css/ace-rtl.min.css" />
+		<link rel="stylesheet" href="../../assets/css/ace-skins.min.css" />
+
+		<!-- [if lte IE 8]> -->
+		<!-- <link rel="stylesheet" href="../../assets/css/ace-ie.min.css"/> -->
+
+		<!-- inline styles related to this page -->
+
+		<!-- ace settings handler -->
+		<script src="../../assets/js/ace-extra.min.js"></script>
+
+		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+
+		<!--[if lt IE 9]>
+		<script src="../../assets/js/html5shiv.js"></script>
+		<script src="../../assets/js/respond.min.js"></script>
+		<![endif]-->
+
+		<!-- ajax数据渲染 -->
+		<script src="../../assets/js-plugins/jquery-2.0.3.min.js"></script>
+		<script src="../../assets/js-plugins/jquery.validate.js"></script>
+		<script src="../../assets/js-plugins/jquery.form.js"></script>
+		<script src="../../assets/js-plugins/My97DatePicker/WdatePicker.js"></script>
+
+		<link rel="stylesheet" href="../../assets/js-plugins/skin/default/layer.css" />
+		<script src="../../assets/js-plugins/layer.js"></script>
+
+		<script src="../../assets/js/data-info/user-info.js"></script>
+		<script src="../../assets/js/mytime.js"></script>
+		<script src="../../assets/js/main.js"></script>
+
+		<link rel="stylesheet" href="../../assets/viewerjs/dist/viewer.min.css" />
+		<script src="../../assets/viewerjs/dist/viewer.min.js"></script>
+
+	</head>
+
+	<body>
+		<!-- 添加 -->
+		<div id="addDate-user" class="modal" tabindex="-1">
+			<form id="addUserForm" class="form-horizontal formList">
+				<div class="modal-dialog" style="width: 750px;margin:50px auto;">
+					<div class="modal-content">
+						<div class="modal-header">
+		                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+		                    <h4 class="modal-title">
+		                        <i class="ace-icon fa fa-hand-o-right green"></i>
+		                        添加会员信息
+		                    </h4>
+		                </div>
+		                <div class="modal-body">
+							<div class="row">
+						        <div class="col-sm-6 truename-error">
+	                                <label class="bolder">真实姓名</label>
+	                                <input type="text" name="trueName" class="col-sm-3 form-control">
+	                            </div>
+	        					<div class="col-sm-6 nickname-error">
+	                                <label class="bolder">昵<em></em>称</label>
+	                                <input type="text" name="nickName" class="col-sm-3 form-control">
+	                            </div>
+	                            <div class="col-sm-6 upward">
+	                            	<label class="bolder">性<em></em>别</label>
+		        					<select class="selectpicker" name="sex">
+										<option value="0" selected="selected">女</option>
+										<option value="1">男</option>
+										<option value="2">保密</option>
+									</select>
+								</div>
+	        					<div class="col-sm-6 upward phone-error">
+	                                <label class="bolder">手机号码</label>
+	                                <input type="text" name="mobile" class="col-sm-3 form-control">
+	                            </div>
+	                            <div class="col-sm-6 upward email-error">
+	                                <label class="bolder">邮箱</label>
+	                                <input type="text" name="email" class="col-sm-3 form-control">
+	                            </div>
+	                            <div class="col-sm-6 upward birth">
+	                                <label class="bolder">出生日期</label>
+	                                <input type="text" name="birthday" class="col-sm-3 form-control Wdate" onClick="WdatePicker()">
+	                            </div>
+	                            <div class="col-sm-6 upward">
+	                                <label class="bolder">星座</label>
+	                                <input type="text" name="xingzuo" class="col-sm-3 form-control">
+	                            </div>
+	                            <div class="col-sm-6 upward">
+	                                <label class="bolder">血型</label>
+	                                <input type="text" name="xuexing" class="col-sm-3 form-control">
+	                            </div>
+	                            <div class="col-sm-6 upward">
+	                                <label class="bolder">自我介绍</label>
+	                                <input type="text" name="intro" class="col-sm-3 form-control">
+	                            </div>
+	                            <div class="col-sm-6 upward">
+	                                <label class="bolder">大学</label>
+	                                <input type="text" name="university" class="col-sm-3 form-control">
+	                            </div>
+	                            <div class="col-sm-6 upward">
+	                                <label class="bolder">就职公司</label>
+	                                <input type="text" name="company" class="col-sm-3 form-control">
+	                            </div>
+	                            <div class="col-sm-6 upward">
+	                                <label class="bolder">职位</label>
+	                                <input type="text" name="position" class="col-sm-3 form-control">
+	                            </div>
+	                            <div class="col-sm-6 upward">
+	                                <label class="bolder">地址</label>
+	                                <input type="text" name="address" class="col-sm-3 form-control">
+	                            </div>
+	                            <div class="col-sm-6 upward">
+	                                <label class="bolder">省份</label>
+	                                <input type="text" name="province" class="col-sm-3 form-control">
+	                            </div>
+	                            <div class="col-sm-6 upward">
+	                                <label class="bolder">市区</label>
+	                                <input type="text" name="city" class="col-sm-3 form-control">
+	                            </div>
+	                            <div class="col-sm-6 upward">
+	                            	<label class="bolder">用户类型</label>
+		        					<select class="selectpicker" name="type">
+										<option value="0" selected="selected">普通用户</option>
+										<option value="1">实名认证</option>
+										<option value="2">自媒体认证</option>
+										<option value="3">专家认证</option>
+										<option value="4">机构认证</option>
+									</select>
+								</div>
+	                            <div class="col-xs-12" style="margin:20px 0px 0px 0px">
+	                               <input type="submit" value="添加" id="add-user" class="btn btn-primary col-sm-2 " style="float: right">
+	                            </div>
+		                    </div>
+	                    </div>
+					</div>
+				</div>
+			</form>
+		</div>
+
+		<!-- 修改 -->
+		<div id="update-user" class="modal" tabindex="-1">
+			<form id="updateUserForm" class="form-horizontal" method="post">
+				<div class="modal-dialog" style="width: 750px;margin:100px auto">
+					<div class="modal-content">
+		                <div class="modal-header">
+		                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+		                    <h4 class="modal-title">
+		                        <i class="ace-icon fa fa-hand-o-right green"></i>
+		                        修改会员信息
+		                    </h4>
+		                </div>
+						<div class="modal-body">
+							<div class="row">
+						        <div class="col-sm-6">
+	                                <label class="bolder">真实姓名</label>
+	                                <input type="text" name="trueName" class="col-sm-3 form-control">
+	                            </div>
+	        					<div class="col-sm-6">
+	                                <label class="bolder">昵<em></em>称</label>
+	                                <input type="text" name="nickName" class="col-sm-3 form-control">
+	                            </div>
+	        					<div class="col-sm-6 upward">
+	                                <label class="bolder">性<em></em>别</label>
+		        					<select class="selectpicker" name="sex">
+										<option value="0">女</option>
+										<option value="1">男</option>
+										<option value="2">保密</option>
+									</select>
+	                            </div>
+	        					<div class="col-sm-6 upward">
+	                                <label class="bolder">联系电话</label>
+	                                <input type="text" name="mobile" class="col-sm-3 form-control">
+	                            </div>
+	                            <div class="col-sm-6 upward email-error">
+	                                <label class="bolder">邮箱</label>
+	                                <input type="text" name="email" class="col-sm-3 form-control">
+	                            </div>
+	                            <div class="col-sm-6 upward birth">
+	                                <label class="bolder">出生日期</label>
+	                                <input type="text" name="birthday" class="col-sm-3 form-control Wdat" id="user-birth" onClick="WdatePicker()">
+	                            </div>
+	                            <div class="col-sm-6 upward">
+	                                <label class="bolder">星座</label>
+	                                <input type="text" name="xingzuo" class="col-sm-3 form-control">
+	                            </div>
+	                            <div class="col-sm-6 upward">
+	                                <label class="bolder">血型</label>
+	                                <input type="text" name="xuexing" class="col-sm-3 form-control">
+	                            </div>
+	                            <div class="col-sm-6 upward">
+	                                <label class="bolder">自我介绍</label>
+	                                <input type="text" name="intro" class="col-sm-3 form-control">
+	                            </div>
+	                            <div class="col-sm-6 upward">
+	                                <label class="bolder">大学</label>
+	                                <input type="text" name="university" class="col-sm-3 form-control">
+	                            </div>
+	                            <div class="col-sm-6 upward">
+	                                <label class="bolder">就职公司</label>
+	                                <input type="text" name="company" class="col-sm-3 form-control">
+	                            </div>
+	                            <div class="col-sm-6 upward">
+	                                <label class="bolder">职位</label>
+	                                <input type="text" name="position" class="col-sm-3 form-control">
+	                            </div>
+	                            <div class="col-sm-6 upward">
+	                                <label class="bolder">地址</label>
+	                                <input type="text" name="address" class="col-sm-3 form-control">
+	                            </div>
+	                            <div class="col-sm-6 upward">
+	                                <label class="bolder">省份</label>
+	                                <input type="text" name="province" class="col-sm-3 form-control">
+	                            </div>
+	                            <div class="col-sm-6 upward">
+	                                <label class="bolder">市区</label>
+	                                <input type="text" name="city" class="col-sm-3 form-control">
+	                            </div>
+	                            <div class="col-sm-6 upward">
+	                            	<label class="bolder">用户类型</label>
+		        					<select class="selectpicker" name="type">
+										<option value="0">普通用户</option>
+										<option value="1">实名认证</option>
+										<option value="2">自媒体认证</option>
+										<option value="3">专家认证</option>
+										<option value="4">机构认证</option>
+									</select>
+								</div>
+						         <div class="col-xs-12 col-sm-12" style="margin:20px 0px 0px 0px">
+	                                <button type="button"  id="update" class="btn btn-primary col-sm-2 " style="float: right">确认</button>
+	                            </div>
+		                    </div>
+	                    </div>
+	                </div>
+            	</div>
+			</form>
+		</div>
+
+		<!-- 审核-->
+		<div id="audit-IDNumber" class="modal" tabindex="-1">
+			<div class="modal-dialog" style="width: 750px;margin:100px auto">
+				<div class="modal-content">
+	                <div class="modal-header">
+	                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+	                    <h4 class="modal-title">
+	                        <i class="ace-icon fa fa-hand-o-right green"></i>
+	                        会员身份认证信息
+	                    </h4>
+	                </div>
+					<div class="modal-body">
+						<div class="message-list">
+							<p><strong>姓名：</strong><span class="IDNumber-name"></span></p>
+							<p><strong>公司：</strong><span class="IDNumber-company"></span></p>
+							<p><strong>职位：</strong><span class="IDNumber-position"></span></p>
+							<div class="imgBox">
+								<strong>身份证信息：</strong>
+								<span class="IDNumberImgShow" style="display: none;">暂无图片</span>
+								<ul class="IDNumber-dataPhoto" class="clearfix"></ul>
+							</div>
+	                    </div>
+	                    <div class="audit-btn" style="text-align: right;">
+	                    	<button type="button" class="btn btn-primary btn-sm audit-fail">不通过</button>
+	                    	<button type="button" class="btn btn-success btn-sm audit-success" style="margin-left: 20px;">通过</button>
+	                    </div>
+                    </div>
+                </div>
+        	</div>
+		</div>
+
+		<div id="audit-wemedia" class="modal" tabindex="-1">
+			<div class="modal-dialog" style="width: 750px;margin:100px auto">
+				<div class="modal-content">
+	                <div class="modal-header">
+	                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+	                    <h4 class="modal-title">
+	                        <i class="ace-icon fa fa-hand-o-right green"></i>
+	                        会员自媒体认证信息
+	                    </h4>
+	                </div>
+					<div class="modal-body">
+						<div class="message-list">
+							<p><strong>负责人真实姓名</strong><span class="wemedia-name"></span></p>
+							<p><strong>负责人身份证号：</strong><span class="wemedia-card"></span></p>
+							<p><strong>专注领域：</strong><span class="wemedia-field"></span></p>
+							<div class="imgBox">
+								<strong>文章链接及说明：</strong>
+								<span class="wemwdiaDataintro"></span>
+							</div>
+	                    </div>
+	                    <div class="audit-btn" style="text-align: right;">
+	                    	<button type="button" class="btn btn-primary btn-sm audit-fail" >不通过</button>
+	                    	<button type="button" class="btn btn-success btn-sm audit-success" style="margin-left: 20px;">通过</button>
+	                    </div>
+                    </div>
+                </div>
+        	</div>
+		</div>
+
+		<div id="audit-expert" class="modal" tabindex="-1">
+			<div class="modal-dialog" style="width: 750px;margin:100px auto">
+				<div class="modal-content">
+	                <div class="modal-header">
+	                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+	                    <h4 class="modal-title">
+	                        <i class="ace-icon fa fa-hand-o-right green"></i>
+	                        会员专家认证信息
+	                    </h4>
+	                </div>
+					<div class="modal-body">
+						<div class="message-list">
+							<p><strong>真实姓名：</strong><span class="expert-name"></span></p>
+							<p><strong>专注领域：</strong><span class="expert-field"></span></p>
+							<p><strong>个人简介：</strong><span class="expert-intro"></span></p>
+							<div class="imgBox">
+								<strong>身份证信息：</strong>
+								<span class="expertImgShow" style="display: none;">暂无图片</span>
+								<ul class="expert-dataPhoto" class="clearfix"></ul>
+							</div>
+	                    </div>
+	                    <div class="audit-btn" style="text-align: right;">
+	                    	<button type="button" class="btn btn-primary btn-sm audit-fail">不通过</button>
+	                    	<button type="button" class="btn btn-success btn-sm audit-success" style="margin-left: 20px;">通过</button>
+	                    </div>
+                    </div>
+                </div>
+        	</div>
+		</div>
+
+		<div id="audit-official" class="modal" tabindex="-1">
+			<div class="modal-dialog" style="width: 750px;margin:100px auto">
+				<div class="modal-content">
+	                <div class="modal-header">
+	                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+	                    <h4 class="modal-title">
+	                        <i class="ace-icon fa fa-hand-o-right green"></i>
+	                        会员官方认证信息
+	                    </h4>
+	                </div>
+					<div class="modal-body">
+						<div class="message-list">
+							<p><strong>企业全称</strong><span class="official-companyName"></span></p>
+							<p><strong>企业简称：</strong><span class="official-short"></span></p>
+							<p><strong>企业介绍：</strong><span class="official-intro"></span></p>
+							<p><strong>营业执照注册号：</strong><span class="official-card"></span></p>
+							<div class="imgBox">
+								<strong>企业工商营业执照：</strong>
+								<span class="officialImgShow" style="display: none;">暂无图片</span>
+								<ul class="official-dataPhoto" class="clearfix">
+								</ul>
+							</div>
+	                    </div>
+	                    <div class="audit-btn" style="text-align: right;">
+	                    	<button type="button" class="btn btn-primary btn-sm audit-fail">不通过</button>
+	                    	<button type="button" class="btn btn-success btn-sm audit-success" style="margin-left: 20px;">通过</button>
+	                    </div>
+                    </div>
+                </div>
+        	</div>
+		</div>
+
+		<!-- 会员审核资料详情 -->
+		<div id="audit-details" class="modal" tabindex="-1">
+			<div class="modal-dialog" style="width: 1100px;margin:100px auto">
+				<div class="modal-content">
+	                <div class="modal-header">
+	                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+	                    <h4 class="modal-title">
+	                        <i class="ace-icon fa fa-hand-o-right green"></i>
+	                        会员审核资料
+	                    </h4>
+	                </div>
+					<div class="modal-body">
+						<div class="message-list-con">
+							<ol class="clearfix">
+								<li class="aa">
+									<h4 class="listTitle1">身份认证资料</h4>
+									<div class="listcont1">
+										<div class="auth-success" style="display: none;"><img src="../../assets/images/auth-success.png" alt=""></div>
+										<div class="auth-fail" style="display: none;"><img src="../../assets/images/auth-fail.png" alt=""></div>
+										<p><strong>姓名：</strong><span class="IDNumber-name"></span></p>
+										<p><strong>公司：</strong><span class="IDNumber-company"></span></p>
+										<p><strong>职位：</strong><span class="IDNumber-position"></span></p>
+										<div class="imgBox">
+											<strong>身份证信息：</strong>
+											<span class="IDNumberImgShow tu" style="display: none;">暂无图片</span>
+											<ul class="IDNumber-dataPhoto dowebok clearfix"></ul>
+										</div>
+									</div>
+								</li>
+								<li class="aa">
+									<h4 class="listTitle2">自媒体认证资料</h4>
+									<div class="listcont2">
+										<div class="auth-success" style="display: none;"><img src="../../assets/images/auth-success.png" alt=""></div>
+										<div class="auth-fail" style="display: none;"><img src="../../assets/images/auth-fail.png" alt=""></div>
+										<p><strong>负责人真实姓名</strong><span class="wemedia-name"></span></p>
+										<p><strong>负责人身份证号：</strong><span class="wemedia-card"></span></p>
+										<p><strong>专注领域：</strong><span class="wemedia-field"></span></p>
+										<p>
+											<strong>文章链接及说明：</strong>
+											<span class="wemwdiaDataintro"></span>
+										</p>
+									</div>
+								</li>
+								<li class="aa">
+									<h4 class="listTitle3">专家认证资料</h4>
+									<div class="listcont3">
+										<div class="auth-success" style="display: none;"><img src="../../assets/images/auth-success.png" alt=""></div>
+										<div class="auth-fail" style="display: none;"><img src="../../assets/images/auth-fail.png" alt=""></div>
+										<p><strong>真实姓名：</strong><span class="expert-name"></span></p>
+										<p><strong>专注领域：</strong><span class="expert-field"></span></p>
+										<p><strong>个人简介：</strong><span class="expert-intro"></span></p>
+										<div class="imgBox">
+											<strong>身份证信息：</strong>
+											<span class="expertImgShow tu" style="display: none;">暂无图片</span>
+											<ul class="expert-dataPhoto  clearfix" id="dowebok"></ul>
+										</div>
+									</div>
+								</li>
+								<li class="aa bor-none">
+									<h4 class="listTitle4">官方认证资料</h4>
+									<div class="listcont4">
+										<div class="auth-success" style="display: none;"><img src="../../assets/images/auth-success.png" alt=""></div>
+										<div class="auth-fail" style="display: none;"><img src="../../assets/images/auth-fail.png" alt=""></div>
+										<p><strong>企业全称</strong><span class="official-companyName"></span></p>
+										<p><strong>企业简称：</strong><span class="official-short"></span></p>
+										<p><strong>企业介绍：</strong><span class="official-intro"></span></p>
+										<p><strong>营业执照注册号：</strong><span class="official-card"></span></p>
+										<div class="imgBox">
+											<strong>企业工商营业执照：</strong>
+											<span class="officialImgShow tu" style="display: none;">暂无图片</span>
+											<ul class="official-dataPhoto dowebok clearfix"></ul>
+										</div>
+									</div>
+								</li>
+							</ol>
+	                    </div>
+                    </div>
+                </div>
+        	</div>
+		</div>
+
+		<div class="navbar navbar-default" id="navbar">
+			<div class="navbar-container" id="navbar-container">
+				<div class="navbar-header pull-left">
+					<a href="../../index.html" class="navbar-brand">
+						<small>
+							<img src="../../assets/images/logo.png" width="108" height="40">
+						</small>
+					</a><!-- /.brand -->
+				</div><!-- /.navbar-header -->
+
+				<div class="navbar-header pull-right" role="navigation">
+					<ul class="nav ace-nav">
+
+						<li class="light-blue">
+							<a data-toggle="dropdown" href="#" class="dropdown-toggle">
+								<img class="nav-user-photo" src="../../assets/images/logo.png" alt="Jason's Photo" />
+								<span class="user-info">
+									<small>Welcome,</small>
+									<span id="master"></span>
+								</span>
+
+								<i class="icon-caret-down"></i>
+							</a>
+
+							<ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+
+								<li>
+									<a href="#">
+										<i class="icon-user"></i>
+										个人资料
+									</a>
+								</li>
+
+								<li class="divider"></li>
+
+								<li>
+									<a href="../../login.html">
+										<i class="icon-off"></i>
+										退出
+									</a>
+								</li>
+							</ul>
+						</li>
+					</ul><!-- /.ace-nav -->
+				</div><!-- /.navbar-header -->
+			</div><!-- /.container -->
+		</div>
+
+		<div class="main-container" id="main-container">
+			<div class="main-container-inner">
+				<a class="menu-toggler" id="menu-toggler" href="#">
+					<span class="menu-text"></span>
+				</a>
+
+				<div class="sidebar" id="sidebar">
+					<div class="sidebar-shortcuts" id="sidebar-shortcuts">
+						<div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
+							<button class="btn btn-success">
+								<i class="icon-signal"></i>
+							</button>
+
+							<button class="btn btn-info">
+								<i class="icon-pencil"></i>
+							</button>
+
+							<button class="btn btn-warning">
+								<i class="icon-group"></i>
+							</button>
+
+							<button class="btn btn-danger">
+								<i class="icon-cogs"></i>
+							</button>
+						</div>
+
+						<div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
+							<span class="btn btn-success"></span>
+
+							<span class="btn btn-info"></span>
+
+							<span class="btn btn-warning"></span>
+
+							<span class="btn btn-danger"></span>
+						</div>
+					</div><!-- #sidebar-shortcuts -->
+
+					<ul class="nav nav-list">
+						<li>
+							<a href="#" class="dropdown-toggle">
+								<i class="icon-home"></i>
+								<span class="menu-text"> 首页 </span>
+
+								<b class="arrow icon-angle-down"></b>
+							</a>
+
+							<ul class="submenu">
+
+								<li>
+									<a href="../../index.html">
+										<i class="icon-double-angle-right"></i>
+										站内数据统计
+									</a>
+								</li>
+								<li>
+									<a href="javascript:;">
+										<i class="icon-double-angle-right"></i>
+										热搜排行
+									</a>
+								</li>
+
+								<li>
+									<a href="javascript:;">
+										<i class="icon-double-angle-right"></i>
+										自媒体热度
+									</a>
+								</li>
+
+								<li>
+									<a href="javascript:;">
+										<i class="icon-double-angle-right"></i>
+										吐槽居文章排行
+									</a>
+								</li>
+							</ul>
+						</li>
+
+						<li>
+							<a href="#" class="dropdown-toggle">
+								<i class="icon-cog"></i>
+								<span class="menu-text"> 系统账号 </span>
+
+								<b class="arrow icon-angle-down"></b>
+							</a>
+
+							<ul class="submenu">
+								<li>
+									<a href="../system/user-admin.html">
+										<i class="icon-double-angle-right"></i>
+										管理员管理
+									</a>
+								</li>
+
+								<li>
+									<a href="../system/role.html">
+										<i class="icon-double-angle-right"></i>
+										角色管理
+									</a>
+								</li>
+
+								<li>
+									<a href="../system/auth-list.html">
+										<i class="icon-double-angle-right"></i>
+										权限管理
+									</a>
+								</li>
+								<li>
+									<a href="../system/reset-password.html">
+										<i class="icon-double-angle-right"></i>
+										密码修改
+									</a>
+								</li>
+
+							</ul>
+						</li>
+
+						<li class="active open">
+							<a href="#" class="dropdown-toggle">
+								<i class="icon-user"></i>
+								<span class="menu-text"> 会员管理 </span>
+
+								<b class="arrow icon-angle-down"></b>
+							</a>
+
+							<ul class="submenu">
+								<li class="active">
+									<a href="user-info.html">
+										<i class="icon-double-angle-right"></i>
+										会员信息
+									</a>
+								</li>
+
+								<li>
+									<a href="integral.html">
+										<i class="icon-double-angle-right"></i>
+										积分管理
+									</a>
+								</li>
+							</ul>
+						</li>
+
+						<li>
+							<a href="#" class="dropdown-toggle">
+								<i class="icon-comments"></i>
+								<span class="menu-text"> 吐槽居管理 </span>
+
+								<b class="arrow icon-angle-down"></b>
+							</a>
+
+							<ul class="submenu">
+								<li>
+									<a href="../complaints/anonymity.html">
+										<i class="icon-double-angle-right"></i>
+										匿名吐槽居信息
+									</a>
+								</li>
+								<li>
+									<a href="../complaints/dynamic.html">
+										<i class="icon-double-angle-right"></i>
+										实名吐槽居信息
+									</a>
+								</li>
+								<li>
+									<a href="../complaints/heap.html">
+										<i class="icon-double-angle-right"></i>
+										扎堆儿信息
+									</a>
+								</li>
+							</ul>
+						</li>
+
+						<li>
+							<a href="#" class="dropdown-toggle">
+								<i class="icon-gift"></i>
+								<span class="menu-text"> 花名信息管理 </span>
+
+								<b class="arrow icon-angle-down"></b>
+							</a>
+
+							<ul class="submenu">
+								<li>
+									<a href="../complaints/flowers.html">
+										<i class="icon-double-angle-right"></i>
+										花名主题
+									</a>
+								</li>
+							</ul>
+						</li>
+
+						<li>
+							<a href="#" class="dropdown-toggle">
+								<i class="icon-facetime-video"></i>
+								<span class="menu-text"> 自媒体管理 </span>
+
+								<b class="arrow icon-angle-down"></b>
+							</a>
+
+							<ul class="submenu">
+								<li>
+									<a href="../media/self-media.html">
+										<i class="icon-double-angle-right"></i>
+										自媒体管理
+									</a>
+								</li>
+							</ul>
+						</li>
+
+						<li>
+							<a href="#" class="dropdown-toggle">
+								<i class="icon-eye-open"></i>
+								<span class="menu-text"> 发现管理 </span>
+
+								<b class="arrow icon-angle-down"></b>
+							</a>
+
+							<ul class="submenu">
+								<li>
+									<a href="javascript:;">
+										<i class="icon-double-angle-right"></i>
+										访谈管理
+									</a>
+								</li>
+
+								<li>
+									<a href="../discovery/platform.html">
+										<i class="icon-double-angle-right"></i>
+										协同平台
+									</a>
+								</li>
+
+								<li>
+									<a href="../discovery/family.html">
+										<i class="icon-double-angle-right"></i>
+										家族财富
+									</a>
+								</li>
+
+								<li>
+									<a href="../discovery/bank.html">
+										<i class="icon-double-angle-right"></i>
+										银行理财
+									</a>
+								</li>
+							</ul>
+						</li>
+
+						<li>
+							<a href="#" class="dropdown-toggle">
+								<i class="icon-envelope"></i>
+								<span class="menu-text"> 消息管理 </span>
+
+								<b class="arrow icon-angle-down"></b>
+							</a>
+
+							<ul class="submenu">
+								<li>
+									<a href="../news/system-info.html">
+										<i class="icon-double-angle-right"></i>
+										系统消息
+									</a>
+								</li>
+
+								<li>
+									<a href="javascript:;">
+										<i class="icon-double-angle-right"></i>
+										站内通知
+									</a>
+								</li>
+
+								<li>
+									<a href="javascript:;">
+										<i class="icon-double-angle-right"></i>
+										微信设置
+									</a>
+								</li>
+
+								<li>
+									<a href="javascript:;">
+										<i class="icon-double-angle-right"></i>
+										微信推送
+									</a>
+								</li>
+							</ul>
+						</li>
+
+
+						<li>
+							<a href="#" class="dropdown-toggle">
+								<i class="icon-desktop"></i>
+								<span class="menu-text"> 网站管理 </span>
+
+								<b class="arrow icon-angle-down"></b>
+							</a>
+
+							<ul class="submenu">
+								<li>
+									<a href="javascript:;">
+										<i class="icon-double-angle-right"></i>
+										网站信息
+									</a>
+								</li>
+
+								<li>
+									<a href="javascript:;">
+										<i class="icon-double-angle-right"></i>
+										热门搜索
+									</a>
+								</li>
+
+								<li>
+									<a href="../network/dictionary.html">
+										<i class="icon-double-angle-right"></i>
+										词典配置
+									</a>
+								</li>
+
+								<li>
+									<a href="../network/adv.html">
+										<i class="icon-double-angle-right"></i>
+										广告位管理
+									</a>
+								</li>
+
+								<li>
+									<a href="../network/feedback.html">
+										<i class="icon-double-angle-right"></i>
+										意见反馈
+									</a>
+								</li>
+
+								<li>
+									<a href="../network/report.html">
+										<i class="icon-double-angle-right"></i>
+										举报管理
+									</a>
+								</li>
+							</ul>
+						</li>
+
+						<li>
+							<a href="#" class="dropdown-toggle">
+								<i class="icon-folder-open"></i>
+								<span class="menu-text"> 底部菜单管理 </span>
+
+								<b class="arrow icon-angle-down"></b>
+							</a>
+
+							<ul class="submenu">
+								<li>
+									<a href="../footmenu/footmenu.html">
+										<i class="icon-double-angle-right"></i>
+										底部菜单
+									</a>
+								</li>
+								<li>
+									<a href="../footmenu/about.html">
+										<i class="icon-double-angle-right"></i>
+										关于我们
+									</a>
+								</li>
+								<li>
+									<a href="../footmenu/help.html">
+										<i class="icon-double-angle-right"></i>
+										帮助
+									</a>
+								</li>
+							</ul>
+						</li>
+
+						<li>
+							<a href="#" class="dropdown-toggle">
+								<i class="icon-folder-open"></i>
+								<span class="menu-text"> 中欧订阅书籍管理 </span>
+
+								<b class="arrow icon-angle-down"></b>
+							</a>
+
+							<ul class="submenu">
+								<li>
+									<a href="../subscibe/subscibe.html">
+										<i class="icon-double-angle-right"></i>
+										订单管理
+									</a>
+								</li>
+							</ul>
+						</li>
+
+					</ul><!-- /.nav-list -->
+
+					<div class="sidebar-collapse" id="sidebar-collapse">
+						<i class="icon-double-angle-left" data-icon1="icon-double-angle-left" data-icon2="icon-double-angle-right"></i>
+					</div>
+				</div>
+
+				<div class="main-content">
+					<div class="breadcrumbs" id="breadcrumbs">
+						<ul class="breadcrumb">
+							<li>
+								<i class="icon-home home-icon"></i>
+								<a href="#">首页</a>
+							</li>
+
+							<li>
+								<a href="#">会员管理</a>
+							</li>
+							<li class="active">会员信息</li>
+						</ul><!-- .breadcrumb -->
+					</div>
+
+					<div class="page-content">
+						<div class="row">
+							<div class="col-xs-12">
+								<!-- PAGE CONTENT BEGINS -->
+
+								<div class="row">
+									<div class="col-xs-12">
+									</div><!-- /span -->
+								</div><!-- /row -->
+
+								<div class="row">
+									<div class="col-xs-12">
+										<div class="operate clearfix" style="height: 80px;">
+											<div class="handle-l clearfix">
+												<div class="user-add">
+													<button type="button" class="btn btn-sm btn-info">添加用户</button>
+												</div>
+												<div class="del-info">
+													<button type="button" class="btn btn-sm btn-danger">批量删除</button>
+												</div>
+												<div class="user-sign">
+													<ul class="clearfix">
+														<li>
+															<img src="../../assets/images/real-name.png" alt="">
+															<span>身份认证</span>
+														</li>
+														<li>
+															<img src="../../assets/images/expert.png" alt="">
+															<span>专家认证</span>
+														</li>
+														<li>
+															<img src="../../assets/images/origan.png" alt="">
+															<span>官方认证</span>
+														</li>
+														<li>
+															<img src="../../assets/images/media.png" alt="">
+															<span>自媒体认证</span>
+														</li>
+													</ul>
+												</div>
+											</div>
+											<div class="handle-r clearfix">
+												<div class="search clearfix">
+													<p><strong>姓名:</strong><input type="text" id="userTrueName"></p>
+													<p><strong>创建时间:</strong><input type="text" id="create-time" onClick="WdatePicker()"></p>
+													<p><strong>用户类型:</strong><input type="text" id="userType"></p>
+													<p><strong>昵称:</strong><input type="text" id="nick"></p>
+													<p><strong>审核状态:</strong><input type="text" id="userAuthStatus"></p>
+													<p><button type="button" class="btn btn-primary btn-xs" id="search">搜索</button></p>
+													<p><button type="button" class="btn btn-success btn-xs" id="backdate">返回</button></p>
+												</div>
+											</div>
+										</div>
+										<div class="table-header">
+											用户资料
+										</div>
+
+										<div class="table-responsive">
+											<table id="sample-table-2" class="table table-striped table-bordered table-hover">
+												<thead>
+													<tr>
+														<th class="center">
+	                                    					<label class="position-relative">
+	                                        					<input type="checkbox" class="ace" id="checkAll" />
+	                                        					<span class="lbl"></span>
+	                                    					</label>
+                                						</th>
+														<th>序号</th>
+														<th>头像</th>
+														<th>昵称</th>
+														<th>姓名</th>
+														<th>性别</th>
+														<th>手机号</th>
+														<th>推荐用户</th>
+														<th>用户类型</th>
+														<th>创建时间</th>
+														<th>审核状态</th>
+														<th>操作</th>
+													</tr>
+												</thead>
+
+												<tbody>
+
+												</tbody>
+											</table>
+										</div>
+										<ul class="pagination pull-right no-margin" id="pages-box">
+
+										</ul>
+									</div>
+								</div>
+							</div><!-- /.col -->
+						</div><!-- /.row -->
+					</div>
+				</div><!-- /.main-content -->
+			</div><!-- /.main-container-inner -->
+
+			<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+				<i class="icon-double-angle-up icon-only bigger-110"></i>
+			</a>
+		</div><!-- /.main-container -->
+
+		<script type="text/javascript">
+			window.jQuery || document.write("<script src='../../assets/js-plugins/jquery-2.0.3.min.js'>"+"<"+"/script>");
+		</script>
+
+		<script type="text/javascript">
+			if("ontouchend" in document) document.write("<script src='../../assets/js-plugins/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+		</script>
+		<script src="../../assets/js-plugins/bootstrap.min.js"></script>
+		<script src="../../assets/js/typeahead-bs2.min.js"></script>
+
+		<!-- page specific plugin scripts -->
+
+		<!--[if lte IE 8]>
+		<script src="../../assets/js/excanvas.min.js"></script>
+		<![endif]-->
+
+		<!-- ace scripts -->
+
+		<script src="../../assets/js/ace-elements.min.js"></script>
+		<script src="../../assets/js/ace.min.js"></script>
+
+		<!-- inline scripts related to this page -->
+</body>
+</html>
